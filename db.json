@@ -1,0 +1,74 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "first_name": "Nguyen",
+      "last_name": "Van A",
+      "email": "nguyenvana@gmail.com",
+      "phone": "0922000111"
+    }
+  ],
+  "product": [
+    {
+      "id": 1,
+      "name": "Fresh organic fruit (50gm)",
+      "price": "130.00",
+      "img": "/asset/image/pro/pro-img-01.jpg",
+      "size": "50gm"
+    },
+    {
+      "id": 2,
+      "name": "Fresh & healty food",
+      "price": "126.00",
+      "size": "5kg"
+    },
+    {
+      "id": 3,
+      "name": "Fresh apple",
+      "price": "130.00",
+      "size": "1kg"
+    },
+    {
+      "id": 4,
+      "name": "Fresh litchi 100% organic",
+      "price": "130.00",
+      "size": "4kg"
+    },
+    {
+      "id": 5,
+      "name": "Vegetable tomato fresh",
+      "price": "133.00",
+      "size": "4kg"
+    },
+    {
+      "id": 6,
+      "name": "Natural grassbean",
+      "price": "139.00",
+      "size": "4kg"
+    },
+    {
+      "id": 7,
+      "name": "Fresh dryed almod (50gm)",
+      "price": "580.00",
+      "size": "50gm"
+    },
+    {
+      "id": 8,
+      "name": "Orange juice (5ltr)",
+      "price": "93.00",
+      "size": "4kg"
+    },
+    {
+      "id": 9,
+      "name": "Organic coconet (5ltr) juice",
+      "price": "167.00",
+      "size": "51lt"
+    },
+    {
+      "id": 10,
+      "name": "Shrimp jumbo (5Lb)",
+      "price": "230.00",
+      "size": "5Lb"
+    }
+  ]
+}

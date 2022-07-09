@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React-js </title>
+    <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./asset/vendors/bootstrap3/bootstrap.min.css">
+    <link rel="stylesheet" href="./asset/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./asset/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./asset/vendors/colorbox/example3/colorbox.css">
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <link rel="stylesheet" href="./asset/css/animate.css">
+    <link rel="stylesheet" href="./asset/css/common.css">
+</head>
+
+<body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+
+<a href="javascript:void(0);" class="scroll" id="top">
+    <span><i class="fa fa-angle-double-up"></i></span>
+</a>
+
+
+<!-- include js files -->
+<script src="./asset/js/jquery.js"></script>
+<script src="./asset/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="./asset/vendors/bootstrap3/bootstrap.min.js"></script>
+<script src="./asset/vendors/bxslider/jquery.bxslider.min.js"></script>
+<script src="./asset/vendors/colorbox/jquery.colorbox-min.js"></script>
+<script src="./asset/vendors/animo/Animo.js"></script>
+<script src="./asset/vendors/dug/dug.js"></script>
+<script src="./asset/js/scripts.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var url = window.location.href;
+
+        $(".main-menu a").each(function () {
+            // checks if its the same on the address bar
+            if (url == (this.href)) {
+                $(this).closest("li").addClass("active");
+                $(this).parents('li').addClass('parent-active');
+            }
+        });
+    });
+
+    jQuery(document).ready(function ($) {
+        'use strict';
+
+        jQuery('#style-selector').animate({
+            left: '-213px'
+        });
+
+        jQuery('#style-selector a.close').click(function (e) {
+            e.preventDefault();
+            var div = jQuery('#style-selector');
+            if (div.css('left') === '-213px') {
+                jQuery('#style-selector').animate({
+                    left: '0'
+                });
+                jQuery(this).removeClass('icon-angle-left');
+                jQuery(this).addClass('icon-angle-right');
+            } else {
+                jQuery('#style-selector').animate({
+                    left: '-213px'
+                });
+                jQuery(this).removeClass('icon-angle-right');
+                jQuery(this).addClass('icon-angle-left');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
