@@ -5,6 +5,31 @@ import Footer from "../component/layout/footer/footer/footer";
 import {Link} from "react-router-dom";
 
 const Register = () => {
+    // local variables
+    const formValue = {
+        email: '',
+        full_name: '',
+        address: '',
+        phone: '',
+        password: '',
+        password_confirmation: '',
+    }
+
+    const [form, setForm] = React.useState(formValue)
+
+    const changeInput = e => {
+        const {name, value} = e.target;
+        setForm(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log(form);
+    }
+
     return <>
         <Header />
 
@@ -22,48 +47,59 @@ const Register = () => {
             </div>
         </div>
 
-
         <div className="container">
             <div id="content">
-
-                <form action="#" method="post" className="beta-form-checkout">
+                <form onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="col-sm-3"></div>
                         <div className="col-sm-6">
                             <h4>Đăng kí</h4>
                             <div className="space20">&nbsp;</div>
 
-
                             <div className="form-block">
                                 <label htmlFor="email">Email address*</label>
-                                <input type="email" id="email" required/>
+                                <input type="email" name="email" value={form.email} required
+                                       onChange={changeInput}
+                                       />
                             </div>
 
                             <div className="form-block">
                                 <label htmlFor="your_last_name">Fullname*</label>
-                                <input type="text" id="your_last_name" required/>
+                                <input type="text" value={form.full_name} name="full_name"
+                                       onChange={changeInput}
+                                />
                             </div>
 
                             <div className="form-block">
                                 <label htmlFor="adress">Address*</label>
-                                <input type="text" id="adress" value="" required/>
+                                <input type="text" name="address" value={form.address}
+                                       onChange={changeInput}
+                                />
                             </div>
-
 
                             <div className="form-block">
                                 <label htmlFor="phone">Phone*</label>
-                                <input type="text" id="phone" required/>
+                                <input type="text" name="phone" value={form.phone}
+                                       onChange={changeInput}
+                                />
                             </div>
+
                             <div className="form-block">
                                 <label htmlFor="phone">Password*</label>
-                                <input type="text" id="phone" required/>
+                                <input type="text" name="password" value={form.password}
+                                       onChange={changeInput}
+                                />
                             </div>
+
                             <div className="form-block">
                                 <label htmlFor="phone">Re password*</label>
-                                <input type="text" id="phone" required/>
+                                <input type="text" name="password_confirmation" value={form.password_confirmation}
+                                       onChange={changeInput}
+                                />
                             </div>
+
                             <div className="form-block">
-                                <button type="submit" className="btn btn-primary">Register</button>
+                                <input type="submit" className="btn btn-primary" value="Register"/>
                             </div>
                         </div>
                         <div className="col-sm-3"></div>
