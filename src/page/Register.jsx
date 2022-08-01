@@ -4,17 +4,29 @@ import Copyright from "../component/layout/footer/copyright/copyright";
 import Footer from "../component/layout/footer/footer/footer";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
+import style from "./register.module.css"
 
 const Register = () => {
-	const [form, setForm] = useState({
+	const navigate = useNavigate();
+
+	const GENDER_BOY = 1;
+	const GENDER_GIRL = 2;
+
+	const formValue = {
 		email: '',
 		username: '',
 		address: '',
 		phone: '',
 		password: '',
 		password_confirmation: '',
-	})
+		birthday: '',
+		gender: GENDER_BOY,
+	}
 
+	const [disableSubmit, setDisableSubmit] = useState(false)
+	const [form, setForm] = useState(formValue)
 	const [error, setError] = useState([]);
 	const [msgSuccess, setMsgSuccess] = useState('');
 
@@ -28,13 +40,18 @@ const Register = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+		setDisableSubmit(true);
 		try {
 			const response = await axios.post('http://localhost:2222/api/register', form);
 			const result = response.data;
+			setDisableSubmit(false);
 			if (result.success) {
 				setError([]);
-				setMsgSuccess(result.message);
-				// @todo clear value form input
+				message.success(result.message)
+				setForm(formValue)
+				setTimeout(() => {
+					navigate("/login");
+				}, 1000)
 				return
 			}
 			setMsgSuccess('')
@@ -90,49 +107,62 @@ const Register = () => {
 							}
 
 							<div className="form-block">
-								<label htmlFor="email">Email *</label>
-								<input type="email" name="email" value={form.email} required
-											 onChange={changeInput}
-								/>
-							</div>
-
-							<div className="form-block">
 								<label htmlFor="your_last_name">Username *</label>
-								<input type="text" name="username" value={form.username} required
-											 onChange={changeInput}
+								<input type="text" name="username" value={form.username} required onChange={changeInput}
 								/>
 							</div>
 
 							<div className="form-block">
-								<label htmlFor="adress">Address *</label>
-								<input type="text" name="address" value={form.address}
-											 onChange={changeInput}
+								<label htmlFor="email">Email *</label>
+								<input type="email" name="email" value={form.email} required onChange={changeInput}
 								/>
 							</div>
 
 							<div className="form-block">
 								<label htmlFor="phone">Phone *</label>
-								<input type="text" name="phone" value={form.phone}
-											 onChange={changeInput}
-								/>
+								<input type="text" name="phone" value={form.phone} onChange={changeInput} required/>
 							</div>
 
 							<div className="form-block">
 								<label htmlFor="phone">Password *</label>
-								<input type="text" name="password" value={form.password}
-											 onChange={changeInput}
-								/>
+								<input type="password" name="password" value={form.password} onChange={changeInput} required/>
 							</div>
 
 							<div className="form-block">
 								<label htmlFor="phone">Re-password *</label>
-								<input type="text" name="password_confirmation" value={form.password_confirmation}
-											 onChange={changeInput}
+								<input type="password" name="password_confirmation" value={form.password_confirmation}
+											 onChange={changeInput} required />
+							</div>
+
+							<div className="form-block">
+								<label htmlFor="adress">Address</label>
+								<input type="text" name="address" value={form.address} onChange={changeInput}
 								/>
 							</div>
 
 							<div className="form-block">
-								<input type="submit" className="btn btn-primary" value="Register"/>
+								<label htmlFor="phone">Birthday</label>
+								<input type="date" name="birthday" value={form.birthday} onChange={changeInput}
+								/>
+							</div>
+
+							<div className="form-block">
+								<label className={`${style.lbl_gender}`}>Gender</label>
+								<div className={`${style.inputGender}`}>
+									<label htmlFor="gender">
+										<input type="radio" id="gender" name="gender" checked={form.gender == GENDER_BOY}
+													 value={GENDER_BOY} onChange={changeInput} />Boy
+									</label>
+									<label htmlFor="gender2">
+										<input type="radio" id="gender2" name="gender" checked={form.gender == GENDER_GIRL}
+													 value={GENDER_GIRL} onChange={changeInput}/>Girl
+									</label>
+								</div>
+							</div>
+
+							<div className="form-block">
+								<label htmlFor="">&nbsp;</label>
+								<input type="submit" disabled={disableSubmit} className="btn btn-primary" value="Register"/>
 							</div>
 						</div>
 						<div className="col-sm-3"></div>
