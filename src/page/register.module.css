@@ -1,3 +1,7 @@
+.lbl_gender {
+	width: 65px !important;
+}
+
 @media (max-width: 768px) {
 	.lbl_gender {
 		width: auto !important;
@@ -13,6 +17,7 @@
 .inputGender {
 	display: flex;
 	float: none;
+	width: 130px;
 }
 
 input[type="password"] {

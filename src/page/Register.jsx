@@ -47,7 +47,7 @@ const Register = () => {
 			setDisableSubmit(false);
 			if (result.success) {
 				setError([]);
-				message.success(result.message)
+				message.success(result.message[0])
 				setForm(formValue)
 				setTimeout(() => {
 					navigate("/login");
@@ -108,14 +108,12 @@ const Register = () => {
 
 							<div className="form-block">
 								<label htmlFor="your_last_name">Username *</label>
-								<input type="text" name="username" value={form.username} required onChange={changeInput}
-								/>
+								<input type="text" name="username" value={form.username} required onChange={changeInput}/>
 							</div>
 
 							<div className="form-block">
 								<label htmlFor="email">Email *</label>
-								<input type="email" name="email" value={form.email} required onChange={changeInput}
-								/>
+								<input type="email" name="email" value={form.email} required onChange={changeInput}/>
 							</div>
 
 							<div className="form-block">
@@ -136,14 +134,12 @@ const Register = () => {
 
 							<div className="form-block">
 								<label htmlFor="adress">Address</label>
-								<input type="text" name="address" value={form.address} onChange={changeInput}
-								/>
+								<input type="text" name="address" value={form.address} onChange={changeInput}/>
 							</div>
 
 							<div className="form-block">
 								<label htmlFor="phone">Birthday</label>
-								<input type="date" name="birthday" value={form.birthday} onChange={changeInput}
-								/>
+								<input type="date" name="birthday" value={form.birthday} onChange={changeInput}/>
 							</div>
 
 							<div className="form-block">

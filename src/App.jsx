@@ -13,6 +13,7 @@ import Cart from "./page/Cart";
 import Product from "./page/Product";
 import ProductType from "./page/ProductType";
 import Pricing from "./page/Pricing";
+import Profile from "./page/Profile";
 
 class App extends React.Component {
     render() {
@@ -30,6 +31,7 @@ class App extends React.Component {
                 <Route exact path="/product" element={<Product />}/>
                 <Route exact path="/product_type" element={<ProductType />}/>
                 <Route exact path="/pricing" element={<Pricing />}/>
+                <Route exact path="/profile" element={<Profile />}/>
             </Routes>
         </BrowserRouter>
         </>

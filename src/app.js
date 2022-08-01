@@ -1,1 +1,1 @@
-  console.log('son phong test js xxxx')
+console.log('Javascript is running');
