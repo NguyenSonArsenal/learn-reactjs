@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../component/layout/header/header";
 import Copyright from "../component/layout/footer/copyright/copyright";
 import Footer from "../component/layout/footer/footer/footer";
@@ -11,8 +11,30 @@ const Profile = () => {
 	const KEY_TOKEN = 'access_token';
 	const navigate = useNavigate();
 
-	const [profile] = useState('Nguyen Son Arsenal')
+	const [profile, setProfile] = useState({})
 	const [error] = useState([]);
+
+	useEffect(() => {
+		async function getProfile() {
+			const token = Cookies.get(KEY_TOKEN, { path: '/' });
+
+			const config = {
+				headers: {Authorization: `Bearer ${token}`}
+			};
+
+			const response = await axios.get('http://localhost:2222/api/profile', config);
+			const result = response.data;
+			if (result.success) {
+				setProfile(result.data);
+				return
+			}
+			setTimeout(() => {
+				navigate("/login");
+			}, 1000)
+		}
+
+		getProfile();
+	}, [])
 
 	const logout = async () => {
 		try {
@@ -20,8 +42,8 @@ const Profile = () => {
 			const config = {
 				headers: { Authorization: `Bearer ${token}` }
 			};
-			const bodyParameters = {};
-			const response = await axios.post('http://localhost:2222/api/logout', bodyParameters, config);
+			const params = {};
+			const response = await axios.post('http://localhost:2222/api/logout', params, config);
 			const result = response.data;
 			if (result.success) {
 				message.success(result.message)
@@ -67,7 +89,7 @@ const Profile = () => {
 				}
 
 				<p>
-					Chào mừng <span style={{color: "red"}}>{ profile }</span> tới với website của chúng tôi
+					Chào mừng <span style={{color: "red"}}>{ profile?.email }</span> tới với website của chúng tôi
 				</p>
 
 				<p>
