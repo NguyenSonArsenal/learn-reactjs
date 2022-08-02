@@ -5,9 +5,12 @@ import Footer from "../component/layout/footer/footer/footer";
 import axios from "axios";
 import {message} from "antd";
 import {useNavigate} from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const Login = () => {
 	const navigate = useNavigate();
+
+	const KEY_TOKEN = 'access_token';
 
 	const formValue = {
 		email: '',
@@ -38,6 +41,10 @@ const Login = () => {
 				setError([]);
 				message.success(result.message[0])
 				setForm(formValue)
+
+				// store cookie access_token for user
+				Cookies.set(KEY_TOKEN, result.data.access_token, { path: '/' });
+
 				setTimeout(() => {
 					navigate("/profile");
 				}, 1000)
@@ -48,6 +55,9 @@ const Login = () => {
 			return
 		} catch (e) {
 			console.log(e)
+			if (Cookies.get(KEY_TOKEN)) {
+				Cookies.remove(KEY_TOKEN, { path: '/' })
+			}
 		}
 	}
 

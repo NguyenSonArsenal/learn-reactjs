@@ -5,35 +5,31 @@ import Footer from "../component/layout/footer/footer/footer";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {message} from "antd";
+import Cookies from 'js-cookie';
 
 const Profile = () => {
+	const KEY_TOKEN = 'access_token';
 	const navigate = useNavigate();
-	const [profile] = useState('Nguyen Son Arsenal')
-	const [error, setError] = useState([]);
 
-	const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjIyMjIvYXBpL2xvZ2luIiwiaWF0IjoxNjU5MzQ5MzY2LCJleHAiOjE2NTkzNDk2NjYsIm5iZiI6MTY1OTM0OTM2NiwianRpIjoiNmp4RkxuNUp6cEhCYXF6YSIsInN1YiI6IjEwMDAxMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.z0UicoqPgJFyiQM8hdiiAIt_fYba2Yue5fZVhn_9tI0';
+	const [profile] = useState('Nguyen Son Arsenal')
+	const [error] = useState([]);
 
 	const logout = async () => {
 		try {
+			const token = Cookies.get(KEY_TOKEN, { path: '/' });
 			const config = {
 				headers: { Authorization: `Bearer ${token}` }
 			};
-
-			const bodyParameters = {
-				key: "value"
-			};
-
+			const bodyParameters = {};
 			const response = await axios.post('http://localhost:2222/api/logout', bodyParameters, config);
-
 			const result = response.data;
 			if (result.success) {
 				message.success(result.message)
-				setTimeout(() => {
-					navigate("/login");
-				}, 1000)
-				return
 			}
-			setError(result.message);
+			Cookies.remove(KEY_TOKEN, { path: '' })
+			setTimeout(() => {
+				navigate("/login");
+			}, 1000)
 			return
 		} catch (e) {
 			console.log(e)
