@@ -1,7 +1,4 @@
 import React, {useState} from 'react';
-import Header from "../component/layout/header/header";
-import Copyright from "../component/layout/footer/copyright/copyright";
-import Footer from "../component/layout/footer/footer/footer";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { message } from "antd";
@@ -63,8 +60,6 @@ const Register = () => {
 	}
 
 	return <>
-		<Header/>
-
 		<div className="inner-header">
 			<div className="container">
 				<div className="pull-left">
@@ -166,9 +161,6 @@ const Register = () => {
 				</form>
 			</div>
 		</div>
-
-		<Footer/>
-		<Copyright/>
 	</>;
 };
 

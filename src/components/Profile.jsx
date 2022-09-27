@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Header from "../component/layout/header/header";
-import Copyright from "../component/layout/footer/copyright/copyright";
-import Footer from "../component/layout/footer/footer/footer";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {message} from "antd";
@@ -59,8 +56,6 @@ const Profile = () => {
 	}
 
 	return <>
-		<Header/>
-
 		<div className="inner-header">
 			<div className="container">
 				<div className="pull-left">
@@ -101,8 +96,6 @@ const Profile = () => {
 				</p>
 			</div>
 		</div>
-		<Footer/>
-		<Copyright/>
 	</>;
 };
 

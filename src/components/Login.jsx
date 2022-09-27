@@ -1,7 +1,4 @@
 import React, {useState} from 'react';
-import Header from "../component/layout/header/header";
-import Copyright from "../component/layout/footer/copyright/copyright";
-import Footer from "../component/layout/footer/footer/footer";
 import axios from "axios";
 import {message} from "antd";
 import {useNavigate} from "react-router-dom";
@@ -62,8 +59,6 @@ const Login = () => {
 	}
 
 	return <>
-		<Header/>
-
 		<div className="inner-header">
 			<div className="container">
 				<div className="pull-left">
@@ -128,9 +123,6 @@ const Login = () => {
 				</form>
 			</div>
 		</div>
-
-		<Footer/>
-		<Copyright/>
 	</>;
 };
 
